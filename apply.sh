@@ -1,1 +1,1 @@
-ln -sv .zshrc ~
+ln -sv "$(pwd)/.zshrc" ~
