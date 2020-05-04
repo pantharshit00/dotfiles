@@ -54,6 +54,7 @@ Plug 'jparise/vim-graphql'
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'cespare/vim-toml'
 " Development Plugin(that I am writing)
 Plug '~/code/vim-prisma', { 'as':'vim-prisma'}
