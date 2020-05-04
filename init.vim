@@ -48,7 +48,6 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline' " Shiny little status bar at the botto
-Plug '/usr/local/opt/fzf' " fzf is installed via homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'jparise/vim-graphql'
 Plug 'vim-scripts/SyntaxAttr.vim'
@@ -183,9 +182,15 @@ let g:nerdtree_sync_cursorline = 1
 
 " Opens vimrc using a shortcut
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
 " sources vimrc via a shortcut
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Remap for copy to clipboard
 vnoremap <leader>y "*y
 
+" Simple binding to duplicate a line
 nnoremap <leader>d Yp
+
+" Binding to quickly remove the highlighting from currectly searched word
+nnoremap <leader>o <esc>:noh<cr>
