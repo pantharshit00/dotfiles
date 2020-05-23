@@ -47,7 +47,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline' " Shiny little status bar at the botto
+Plug 'hugolgst/vimsence'
 Plug '/usr/local/opt/fzf' " fzf is installed via homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'jparise/vim-graphql'
@@ -56,6 +58,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'cespare/vim-toml'
+Plug 'mbbill/undotree'
 " Development Plugin(that I am writing)
 Plug '~/code/vim-prisma', { 'as':'vim-prisma'}
 call plug#end()
@@ -184,9 +187,44 @@ let g:nerdtree_sync_cursorline = 1
 
 " Opens vimrc using a shortcut
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
 " sources vimrc via a shortcut
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Remap for copy to clipboard
 vnoremap <leader>y "*y
 
+" Simple binding to duplicate a line
 nnoremap <leader>d Yp
+
+" Binding to quickly remove the highlighting from currectly searched word
+nnoremap <leader>o <esc>:noh<cr>
+
+" some more coc shortcuts
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" undotree binding
+nnoremap <leader>u :UndotreeToggle<CR>
+
+" enable some mouse bindings like resizing a buffer
+set mouse=n
