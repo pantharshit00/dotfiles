@@ -49,7 +49,6 @@ Plug 'preservim/nerdcommenter'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ap/vim-css-color'
 Plug 'vim-airline/vim-airline' " Shiny little status bar at the botto
-Plug 'hugolgst/vimsence'
 Plug '/usr/local/opt/fzf' " fzf is installed via homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'jparise/vim-graphql'
@@ -57,6 +56,7 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'wakatime/vim-wakatime'
 Plug 'cespare/vim-toml'
 Plug 'mbbill/undotree'
 " Development Plugin(that I am writing)
