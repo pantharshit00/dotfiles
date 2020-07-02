@@ -1,4 +1,4 @@
-" Use relative numbers
+
 set number relativenumber
 augroup numbertoggle
   autocmd!
@@ -38,11 +38,6 @@ set splitright
 " Plugins
 call plug#begin('~/.config/nvim')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
-Plug 'unkiwii/vim-nerdtree-sync'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'preservim/nerdcommenter'
@@ -59,6 +54,7 @@ Plug 'tpope/vim-repeat'
 Plug 'wakatime/vim-wakatime'
 Plug 'cespare/vim-toml'
 Plug 'mbbill/undotree'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 " Development Plugin(that I am writing)
 Plug '~/code/vim-prisma', { 'as':'vim-prisma'}
 call plug#end()
@@ -156,7 +152,10 @@ let g:coc_global_extensions = [
   \ 'coc-html', 
   \ 'coc-css',
   \ 'coc-pairs',
-  \ 'coc-emmet'
+  \ 'coc-emmet',
+  \ 'coc-clangd',
+  \ 'coc-eslint',
+  \ 'coc-explorer'
   \ ]
 " coc-prettier config
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -167,23 +166,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " remap <C-t> to fzf
-map <C-t> :FZF<CR>
-
-" Remap comment key
-nmap <C-_> <plug>NERDCommenterToggle 
-vmap <C-_> <plug>NERDCommenterToggle 
-
-" Add one space after the comment characters
-let NERDSpaceDelims=1
-
-" NERDTree options
-" autocmd vimenter * NERDTree " automatically open NERDTree when I start vim
-" Next map is so that I can use Ctrl + B to toggle NERDTree
-map <C-b> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1 " show dotfiles
-let g:NERDTreeIgnore = ['^node_modules$']
-" sync cursor line with NERDTree
-let g:nerdtree_sync_cursorline = 1
+map <C-p> :FZF<CR>
 
 " Opens vimrc using a shortcut
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -224,7 +207,25 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 command! -nargs=0 Format :call CocAction('format')
 
 " undotree binding
-nnoremap <leader>u :UndotreeToggle<CR>
-
+nnoremap <leader>u :UndotreeToggle<CR> 
 " enable some mouse bindings like resizing a buffer
 set mouse=n
+
+set runtimepath^=/Users/harshit/code/coc-prisma
+
+
+" shortcut to restart the coc server
+nnoremap <leader>rs :CocRestart<CR>
+
+" remap to explorer
+:nmap <C-b> :CocCommand explorer<CR>
+
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   }
+\ }
+
+" Use preset argument to open it
+nmap <leader>b :CocCommand explorer --preset floating<CR>

@@ -130,3 +130,12 @@ eval "$(direnv hook zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+function _t() {
+  # Defaults to 3 levels deep, do more with `t 5` or `t 1`
+  # pass additional args after
+  local levels=${1:-3}; shift
+  tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst -L $levels -aC $2
+}
+alias t=_t
+alias ls=exa
