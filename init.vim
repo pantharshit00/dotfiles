@@ -154,7 +154,6 @@ let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-emmet',
   \ 'coc-clangd',
-  \ 'coc-eslint',
   \ 'coc-explorer'
   \ ]
 " coc-prettier config
@@ -229,3 +228,8 @@ let g:coc_explorer_global_presets = {
 
 " Use preset argument to open it
 nmap <leader>b :CocCommand explorer --preset floating<CR>
+
+" NERDcommentor
+" Remap comment key
+nmap <C-_> <plug>NERDCommenterToggle 
+vmap <C-_> <plug>NERDCommenterToggle
