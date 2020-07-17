@@ -139,3 +139,5 @@ function _t() {
 }
 alias t=_t
 alias ls=exa
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
