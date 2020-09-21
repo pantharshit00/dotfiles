@@ -1,0 +1,22 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "Markdown",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "html",
+    "rust",
+    "c",
+    "graphql",
+    "prisma"
+  ],
+  "clangd.path": "/Users/harshit/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd",
+  "clangd.semanticHighlighting": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.previewAction.onHover": false
+}

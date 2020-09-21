@@ -1,4 +1,5 @@
 
+colorscheme "challenger-deep"
 set number relativenumber
 augroup numbertoggle
   autocmd!
@@ -43,12 +44,14 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ap/vim-css-color'
+Plug 'airblade/vim-rooter'
 Plug 'vim-airline/vim-airline' " Shiny little status bar at the botto
 Plug '/usr/local/opt/fzf' " fzf is installed via homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'jparise/vim-graphql'
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'wakatime/vim-wakatime'
@@ -62,14 +65,15 @@ call plug#end()
 " enable filetype plugins
 filetype plugin on
 
-if (has("termguicolors"))
+if has('nvim') || has('termguicolors')
  set termguicolors
 endif
 " color scheme
 syntax on
 set background=dark
-colorscheme palenight
-let g:airline_theme = "palenight"
+colorscheme challenger_deep
+
+let g:airline_theme = "challenger_deep"
 let g:palenight_terminal_italics=1
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -234,4 +238,9 @@ nmap <leader>b :CocCommand explorer --preset floating<CR>
 nmap <C-_> <plug>NERDCommenterToggle 
 vmap <C-_> <plug>NERDCommenterToggle
 
-
+nnoremap <leader>j :Buffers<CR>
+nnoremap <silent> <TAB> :bnext<CR>
+nnoremap <silent> <S-TAB> :bprevious<CR>
+nnoremap <silent> <C-TAB> :bd<CR>
+nnoremap <leader>% "ayiw:%s/<C-r>"/
+nnoremap <leader># "ayiw:s/<C-r>"/

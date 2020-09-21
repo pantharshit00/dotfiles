@@ -17,6 +17,9 @@ export ZSH="/Users/harshit/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -141,3 +144,8 @@ alias t=_t
 alias ls=exa
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+alias gdiff="git diff -p | delta"
+alias eds="export DEBUG=*"
+alias rds="export DEBUG="
+alias pmg="npx prisma migrate save --experimental && npx prisma migrate up --experimental"
+alias psg="npx prisma generate"
