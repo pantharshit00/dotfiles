@@ -17,6 +17,9 @@ export ZSH="/home/harshit/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -133,4 +136,22 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export BROWSER="/usr/bin/firefox"
+source "/usr/share/fzf/key-bindings.zsh"
+source "/usr/share/fzf/completion.zsh"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+function _t() {
+  # Defaults to 3 levels deep, do more with `t 5` or `t 1`
+  # pass additional args after
+  local levels=${1:-3}; shift
+  tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst -L $levels -aC $2
+}
+alias t=_t
+alias ls=exa
+
+alias gdiff="git diff -p | delta"
+alias eds="export DEBUG=*"
+alias rds="export DEBUG="
+alias pmg="npx prisma migrate save --experimental && npx prisma migrate up --experimental"
+alias psg="npx prisma generate"

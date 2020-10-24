@@ -44,6 +44,8 @@ Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
+Plug 'airblade/vim-rooter'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'drewtempelmeyer/palenight.vim'
@@ -52,10 +54,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'jparise/vim-graphql'
 Plug 'vim-scripts/SyntaxAttr.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'cespare/vim-toml'
-" Development Plugin(that I am writing)
-Plug '~/code/vim-prisma', { 'as':'vim-prisma'}
+Plug 'mbbill/undotree'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'pantharshit00/vim-prisma'
 call plug#end()
 
 " enable filetype plugins
@@ -65,10 +70,10 @@ if (has("termguicolors"))
  set termguicolors
 endif
 " color scheme
+colorscheme challenger_deep
 syntax on
 set background=dark
-colorscheme palenight
-let g:airline_theme = "palenight"
+let g:airline_theme = "challenger_deep"
 let g:palenight_terminal_italics=1
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -151,7 +156,9 @@ let g:coc_global_extensions = [
   \ 'coc-html', 
   \ 'coc-css',
   \ 'coc-pairs',
-  \ 'coc-emmet'
+  \ 'coc-emmet',
+  \ 'coc-clangd',
+  \ 'coc-explorer',
   \ ]
 " coc-prettier config
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -161,25 +168,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Improved <CR> for pairs
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" remap <C-t> to fzf
-map <C-t> :FZF<CR>
-
-" Remap comment key
-nmap <C-_> <plug>NERDCommenterToggle 
-vmap <C-_> <plug>NERDCommenterToggle 
-
-" Add one space after the comment characters
-let NERDSpaceDelims=1
-
-" NERDTree options
-" autocmd vimenter * NERDTree " automatically open NERDTree when I start vim
-" Next map is so that I can use Ctrl + B to toggle NERDTree
-map <C-b> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1 " show dotfiles
-let g:NERDTreeIgnore = ['^node_modules$']
-" sync cursor line with NERDTree
-let g:nerdtree_sync_cursorline = 1
-
+map <C-p> :FZF<CR>
 " Opens vimrc using a shortcut
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
@@ -194,3 +183,62 @@ nnoremap <leader>d Yp
 
 " Binding to quickly remove the highlighting from currectly searched word
 nnoremap <leader>o <esc>:noh<cr>
+
+" Binding to quickly remove the highlighting from currectly searched word
+nnoremap <leader>o <esc>:noh<cr>
+
+" some more coc shortcuts
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" undotree binding
+nnoremap <leader>u :UndotreeToggle<CR> 
+" enable some mouse bindings like resizing a buffer
+set mouse=n
+
+" shortcut to restart the coc server
+nnoremap <leader>rs :CocRestart<CR>
+
+" remap to explorer
+:nmap <C-b> :CocCommand explorer<CR>
+
+let g:coc_explorer_global_presets = {
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   }
+\ }
+
+" Use preset argument to open it
+nmap <leader>b :CocCommand explorer --preset floating<CR>
+
+" NERDcommentor
+" Remap comment key
+nmap <C-_> <plug>NERDCommenterToggle 
+vmap <C-_> <plug>NERDCommenterToggle
+
+nnoremap <leader>j :Buffers<CR>
+nnoremap <silent> <TAB> :bnext<CR>
+nnoremap <silent> <S-TAB> :bprevious<CR>
+nnoremap <silent> <C-TAB> :bd<CR>
+nnoremap <leader>% "ayiw:%s/<C-r>"/
+nnoremap <leader># "ayiw:s/<C-r>"/
