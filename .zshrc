@@ -155,3 +155,6 @@ alias eds="export DEBUG=*"
 alias rds="export DEBUG="
 alias pmg="npx prisma migrate save --experimental && npx prisma migrate up --experimental"
 alias psg="npx prisma generate"
+alias cfi="nvim ~/.config/i3/config"
+alias cfz="nvim ~/.zshrc"
+alias pbcopy='xclip -selection clipboard'

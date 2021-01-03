@@ -176,7 +176,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Remap for copy to clipboard
-vnoremap <leader>y "*y
+vnoremap <leader>y "+y
 
 " Simple binding to duplicate a line
 nnoremap <leader>d Yp
@@ -219,7 +219,7 @@ set mouse=n
 nnoremap <leader>rs :CocRestart<CR>
 
 " remap to explorer
-:nmap <C-b> :CocCommand explorer<CR>
+nmap <C-b> :CocCommand explorer<CR>
 
 let g:coc_explorer_global_presets = {
 \   'floating': {
@@ -242,3 +242,9 @@ nnoremap <silent> <S-TAB> :bprevious<CR>
 nnoremap <silent> <C-TAB> :bd<CR>
 nnoremap <leader>% "ayiw:%s/<C-r>"/
 nnoremap <leader># "ayiw:s/<C-r>"/
+
+" Applying codeAction to the selected region.
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+set runtimepath^=/home/harshit/code/coc-prisma

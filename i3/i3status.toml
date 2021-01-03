@@ -3,20 +3,10 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-device = "enp0s3"
+device = "enp5s0"
 format = "{ip} {speed_up} {speed_down}"
 interval = 2
 use_bits = false
-
-[[block]]
-block = "disk_space"
-path = "/"
-alias = "/"
-info_type = "available"
-unit = "GB"
-interval = 20
-warning = 20.0
-alert = 2.0
 
 [[block]]
 block = "memory"
@@ -35,6 +25,12 @@ format = "{1m}"
 
 [[block]]
 block = "time"
-interval = 60
-format = "%a %d/%m %R"
+interval = 1 
+format = "%a %d/%m %r"
 
+[[block]]
+block = "temperature"
+interval = 3
+collapsed = false
+format = "{average}° {max}°"
+chip = "k10temp-pci-00c3"
