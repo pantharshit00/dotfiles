@@ -214,7 +214,6 @@ nnoremap <leader>u :UndotreeToggle<CR>
 " enable some mouse bindings like resizing a buffer
 set mouse=n
 
-set runtimepath^=/Users/harshit/code/coc-prisma
 
 
 " shortcut to restart the coc server
@@ -244,3 +243,5 @@ nnoremap <silent> <S-TAB> :bprevious<CR>
 nnoremap <silent> <C-TAB> :bd<CR>
 nnoremap <leader>% "ayiw:%s/<C-r>"/
 nnoremap <leader># "ayiw:s/<C-r>"/
+
+"set runtimepath^=/Users/harshit/code/coc-prisma
